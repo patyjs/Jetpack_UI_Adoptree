@@ -63,6 +63,8 @@ class RegistroActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+
     var name_txt by remember { mutableStateOf("") }
     var name2_txt by remember { mutableStateOf("") }
     var name3_txt by remember { mutableStateOf("") }
@@ -70,22 +72,16 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
     var password_txt by remember { mutableStateOf("") }
     var cel_txt by remember { mutableStateOf("") }
     var curp_txt by remember { mutableStateOf("") }
-
-
-    val context = LocalContext.current
-
     var selectedDateText by remember { mutableStateOf("") }
 
-// Fetching current year, month and day
-    // val year = calendar[Calendar.YEAR]
-    // val month = calendar[Calendar.MONTH]
-    // val dayOfMonth = calendar[Calendar.DAY_OF_MONTH]
-
+    // SE INICIALIZA UNA VARIABLE CON UN OBJETO DEL TIPO DATEPICKERDIALOG, CON UNA FECHA PREDETERMINADA DE 01/06/2022
+    // PARA MANDARLO A LLAMAR DESDE LA ORDEN DE EJECUCION DE UN BOTON
+    // EL DATEPICKER NO ES UN ELEMENTO DE LA INTERFAZ, ES UN ELEMENTO EMERGENTE DEL SISTEMA QUE SE LLAMA EN EL MOMENTO DE SER REQUERIDO
     val datePicker = DatePickerDialog(
         context,
         { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int ->
             selectedDateText = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear"
-        }, 2022, 6, 1
+        }, 2023, 6, 1
     )
 
 
@@ -289,14 +285,12 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth(),
                     onClick = {
+                        // MUESTRA UN DATEPICKER DEL SISTEMA
                         datePicker.show()
                     }
                 ) {
                     Text(text = "Fecha de nacimineto")
                 }
-
-
-                 /// ...
             }
 
             Row (
@@ -304,8 +298,6 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(horizontal = 32.dp, vertical = 0.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
-
             ) {
                 OutlinedTextField(
                     modifier = Modifier
@@ -328,8 +320,6 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(horizontal = 32.dp, vertical = 0.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
-
             ) {
 
 
@@ -349,9 +339,6 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
                 )
             }
 
-
-
-
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -360,26 +347,7 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
             ) {
                 Text("Registrar")
             }
-
-
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 0.dp, vertical = 32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally, //centrar elementos de forma horizontal
-
-
-            ) {
-
-            }
-
-
         }
-
-
-
-
     }
 }
 
