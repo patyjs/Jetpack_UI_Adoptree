@@ -6,18 +6,23 @@ import android.widget.DatePicker
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -66,10 +71,11 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
     val context = LocalContext.current
 
     var name_txt by remember { mutableStateOf("") }
-    var name2_txt by remember { mutableStateOf("") }
-    var name3_txt by remember { mutableStateOf("") }
+    var pat_txt by remember { mutableStateOf("") }
+    var mat_txt by remember { mutableStateOf("") }
     var email_txt by remember { mutableStateOf("") }
     var password_txt by remember { mutableStateOf("") }
+    var password2_txt by remember { mutableStateOf("") }
     var cel_txt by remember { mutableStateOf("") }
     var curp_txt by remember { mutableStateOf("") }
     var selectedDateText by remember { mutableStateOf("") }
@@ -116,240 +122,172 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
         Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 0.dp, vertical = 0.dp)
-                    .verticalScroll(rememberScrollState())
-        ) {
-
-            Row (
+                    .padding(horizontal = 32.dp, vertical = 0.dp)
+                    .verticalScroll(rememberScrollState())){
+            OutlinedTextField(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
+                    .fillMaxWidth(),
+                value = name_txt,
+                label = { Text( "Nombre(s)") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.persona_24),
+                        contentDescription = null)
+                },
+                onValueChange = { entry ->
+                    name_txt = entry
+                })
 
-            ) {
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = pat_txt,
+                label = { Text( "Apellido paterno") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.persona_24),
+                        contentDescription = null)
+                },
+                onValueChange = { entry ->
+                    pat_txt = entry
+                })
 
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = mat_txt,
+                label = { Text( "Apellido materno") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.persona_24),
+                        contentDescription = null)
+                },
+                onValueChange = { entry ->
+                    mat_txt = entry
+                })
 
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = email_txt,
+                label = { Text( "Correo") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.arroba_email_24),
+                        contentDescription = null)
+                },
+                onValueChange = { entry ->
+                    email_txt = entry
+                })
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = password_txt,
+                label = { Text( "Crear contraseña") },
+                visualTransformation = PasswordVisualTransformation(),
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.password_24),
+                        contentDescription = null)
+                },
+                onValueChange = { entry ->
+                    password_txt = entry
+                })
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = password2_txt,
+                label = { Text( "Repetir contraseña") },
+                visualTransformation = PasswordVisualTransformation(),
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.password_24),
+                        contentDescription = null)
+                },
+                onValueChange = { entry ->
+                    password2_txt = entry
+                })
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ){
                 OutlinedTextField(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    value = name_txt,
-                    label = { Text( "Nombre(s)") },
+                        .clickable(enabled = false) {  }
+                        .fillMaxWidth(0.8f),
+
+                    value = selectedDateText,
+                    label = { Text( "Fecha de nacimiento" ) },
                     leadingIcon = {
                         Icon(
-                            painterResource(id = R.drawable.persona_24),
-                            contentDescription = null)
-                    },
-                    onValueChange = { entry ->
-                        name_txt = entry
-                    }
-                )
-            }
-
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-
-
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = name2_txt,
-                    label = { Text( "Apellido paterno") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.persona_24),
-                            contentDescription = null)
-                    },
-                    onValueChange = { entry ->
-                        name2_txt = entry
-                    }
-                )
-            }
-
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-
-
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = name3_txt,
-                    label = { Text( "Apellido materno") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.persona_24),
-                            contentDescription = null)
-                    },
-                    onValueChange = { entry ->
-                        name3_txt = entry
-                    }
-                )
-            }
-
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
-
-            ) {
-
-
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = email_txt,
-                    label = { Text( "Correo") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.arroba_email_24),
-                            contentDescription = null)
-                    },
-                    onValueChange = { entry ->
-                        email_txt = entry
-                    }
-                )
-            }
-
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-
-
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = password_txt,
-                    label = { Text( "Crear contraseña") },
-                    visualTransformation = PasswordVisualTransformation(),
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.password_24),
+                            painterResource(id = R.drawable.calendar_month_24),
                             contentDescription = null)
                     },
                     onValueChange = { entry ->
                         password_txt = entry
-                    }
-                )
-            }
+                    })
 
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
+                Spacer(modifier = Modifier.width(8.dp))
 
-
-                OutlinedTextField(
+                IconButton(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    value = password_txt,
-                    label = { Text( "Repetir contraseña") },
-                    visualTransformation = PasswordVisualTransformation(),
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.password_24),
-                            contentDescription = null)
-                    },
-                    onValueChange = { entry ->
-                        password_txt = entry
-                    }
-                )
-            }
-
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                //horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                OutlinedButton(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxHeight()
+                        .align(Alignment.CenterVertically),
                     onClick = {
                         // MUESTRA UN DATEPICKER DEL SISTEMA
                         datePicker.show()
-                    }
-                ) {
-                    Text(text = "Fecha de nacimineto")
+                    })
+                {
+                    Icon(
+                        painterResource(id = R.drawable.edit_calendar_24),
+                        contentDescription = null)
                 }
             }
 
-            Row (
+
+
+            OutlinedTextField(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = cel_txt,
-                    label = { Text( "Número celular") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.phone_24),
-                            contentDescription = null)
-                    },
-                    onValueChange = { entry ->
-                        cel_txt = entry
-                    }
-                )
-            }
+                    .fillMaxWidth(),
+                value = cel_txt,
+                label = { Text( "Número celular") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.phone_24),
+                        contentDescription = null)
+                },
+                onValueChange = { entry ->
+                    cel_txt = entry
+                })
 
-            Row (
+            OutlinedTextField(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-
-
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = curp_txt,
-                    label = { Text( "Curp") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.curp_24),
-                            contentDescription = null)
-                    },
-                    onValueChange = { entry ->
-                        curp_txt = entry
-                    }
-                )
-            }
+                    .fillMaxWidth(),
+                value = curp_txt,
+                label = { Text( "Curp") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.curp_24),
+                        contentDescription = null)
+                },
+                onValueChange = { entry ->
+                    curp_txt = entry
+                })
 
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 16.dp),
+                    .padding(horizontal = 0.dp, vertical = 16.dp),
                 onClick = {  }
-            ) {
-                Text("Registrar")
+            ) { Text("Registrar") }
+
             }
         }
     }
-}
+
 
 @Preview(showBackground = true)
 @Composable
