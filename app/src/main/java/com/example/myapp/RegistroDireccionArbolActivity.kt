@@ -100,16 +100,17 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp, vertical = 0.dp)
-                ){
+                ) {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
                 value = direccion_txt,
-                label = { Text( "Dirección") },
+                label = { Text("Dirección") },
                 leadingIcon = {
                     Icon(
                         painterResource(id = R.drawable.persona_24),
-                        contentDescription = null)
+                        contentDescription = null
+                    )
                 },
                 onValueChange = { entry ->
                     direccion_txt = entry
@@ -119,11 +120,12 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth(),
                 value = colonia_txt,
-                label = { Text( "Colonia") },
+                label = { Text("Colonia") },
                 leadingIcon = {
                     Icon(
                         painterResource(id = R.drawable.persona_24),
-                        contentDescription = null)
+                        contentDescription = null
+                    )
                 },
                 onValueChange = { entry ->
                     colonia_txt = entry
@@ -133,11 +135,12 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth(),
                 value = cp_txt,
-                label = { Text( "Código postal") },
+                label = { Text("Código postal") },
                 leadingIcon = {
                     Icon(
                         painterResource(id = R.drawable.persona_24),
-                        contentDescription = null)
+                        contentDescription = null
+                    )
                 },
                 onValueChange = { entry ->
                     cp_txt = entry
@@ -147,11 +150,12 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth(),
                 value = estado_txt,
-                label = { Text( "Estado") },
+                label = { Text("Estado") },
                 leadingIcon = {
                     Icon(
                         painterResource(id = R.drawable.arroba_email_24),
-                        contentDescription = null)
+                        contentDescription = null
+                    )
                 },
                 onValueChange = { entry ->
                     estado_txt = entry
@@ -161,11 +165,12 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth(),
                 value = ciudad_txt,
-                label = { Text( "Ciudad") },
+                label = { Text("Ciudad") },
                 leadingIcon = {
                     Icon(
                         painterResource(id = R.drawable.password_24),
-                        contentDescription = null)
+                        contentDescription = null
+                    )
                 },
                 onValueChange = { entry ->
                     ciudad_txt = entry
@@ -174,7 +179,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 0.dp, vertical = 16.dp),
-                onClick = {  }
+                onClick = { }
             ) { Text("Registrar") }
 
         }
