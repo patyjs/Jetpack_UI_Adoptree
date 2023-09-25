@@ -66,15 +66,15 @@ class RegistroInfoArbolActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun Greeting2(modifier: Modifier = Modifier) {
-    val options = listOf("", "Food", "Bill Payment", "Recharges", "Outing", "Other")
+    val options = listOf("", "Responsabilidad", "Respeto", "Tolerencia", "Compromiso","Equidad")
+    val options2 = listOf("", "Palo de rosa", "Mezquite", "Huizache", "Acacia", "Mimbre")
     var expanded by remember { mutableStateOf(false) }
+    var expanded2 by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf(options[0]) }
+    var selectedOptionText2 by remember { mutableStateOf(options[0]) }
 
-    var direccion_txt by remember { mutableStateOf("") }
-    var colonia_txt by remember { mutableStateOf("") }
-    var cp_txt by remember { mutableStateOf("") }
-    var estado_txt by remember { mutableStateOf("") }
-    var ciudad_txt by remember { mutableStateOf("") }
+    var tamaño_txt by remember { mutableStateOf("") }
+    var perimetro_txt by remember { mutableStateOf("") }
 
     Column( // PARA COLOCAR ELEMENTOS DE FORMA VERTICAL (UNO ENCIMA DE OTRO)
         modifier = Modifier
@@ -98,7 +98,7 @@ fun Greeting2(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally, //centrar elementos de forma horizontal
         ) {
             Text(
-                text = "¿Donde está tu árbol?",
+                text = "Registra tu árbol",
                 modifier = modifier,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.SemiBold
@@ -110,81 +110,7 @@ fun Greeting2(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp, vertical = 0.dp)
         ) {
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = direccion_txt,
-                label = { Text("Dirección") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.persona_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    direccion_txt = entry
-                })
 
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = colonia_txt,
-                label = { Text("Colonia") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.persona_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    colonia_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = cp_txt,
-                label = { Text("Código postal") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.persona_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    cp_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = estado_txt,
-                label = { Text("Estado") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.arroba_email_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    estado_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = ciudad_txt,
-                label = { Text("Ciudad") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.password_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    ciudad_txt = entry
-                })
-            
             Row(modifier = Modifier
                 .fillMaxWidth()) {
 
@@ -193,10 +119,10 @@ fun Greeting2(modifier: Modifier = Modifier) {
                         .fillMaxWidth(0.8f),
                     value = selectedOptionText,
                     readOnly = true,
-                    label = { Text("Nombre generico") },
+                    label = { Text("Valor") },
                     leadingIcon = {
                         Icon(
-                            painterResource(id = R.drawable.password_24),
+                            painterResource(id = R.drawable.estrellas_24),
                             contentDescription = null
                         )
                     },
@@ -215,7 +141,7 @@ fun Greeting2(modifier: Modifier = Modifier) {
                         })
                     {
                         Icon(
-                            painterResource(id = R.drawable.edit_calendar_24),
+                            painterResource(id = R.drawable.search_24),
                             contentDescription = null)
                     }
 
@@ -234,6 +160,89 @@ fun Greeting2(modifier: Modifier = Modifier) {
                     }
                 }
             }
+
+            Row(modifier = Modifier
+                .fillMaxWidth()) {
+
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f),
+                    value = selectedOptionText2,
+                    readOnly = true,
+                    label = { Text("Nombre generico") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.texto_generico_24),
+                            contentDescription = null
+                        )
+                    },
+                    onValueChange = { })
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                ) {
+                    IconButton(
+                        modifier = Modifier,
+                        onClick = {
+                            expanded2 = !expanded2
+                        })
+                    {
+                        Icon(
+                            painterResource(id = R.drawable.search_24),
+                            contentDescription = null)
+                    }
+
+                    DropdownMenu(
+                        expanded = expanded2,
+                        onDismissRequest = { expanded2 = false }
+                    ) {
+                        options2.forEach{
+                                item -> DropdownMenuItem(
+                            text = { Text(text = item) },
+                            onClick = {
+                                selectedOptionText2 = item
+                                expanded2 = false
+                            })
+                        }
+                    }
+                }
+            }
+
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = tamaño_txt,
+                label = { Text("Tamaño") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.circle_24),
+                        contentDescription = null
+                    )
+                },
+                onValueChange = { entry ->
+                    tamaño_txt = entry
+                })
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = perimetro_txt,
+                label = { Text("Perímetro") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.circle_24),
+                        contentDescription = null
+                    )
+                },
+                onValueChange = { entry ->
+                    perimetro_txt = entry
+                })
+
+            
 
 
 
