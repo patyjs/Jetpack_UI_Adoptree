@@ -4,17 +4,27 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -46,7 +56,7 @@ class RegistroInfoArbolActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting2("Android")
+                    Greeting2()
                 }
             }
         }
@@ -55,10 +65,11 @@ class RegistroInfoArbolActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    val options = listOf("Food", "Bill Payment", "Recharges", "Outing", "Other")
+fun Greeting2(modifier: Modifier = Modifier) {
+    val options = listOf("", "Food", "Bill Payment", "Recharges", "Outing", "Other")
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf(options[0]) }
+
     var direccion_txt by remember { mutableStateOf("") }
     var colonia_txt by remember { mutableStateOf("") }
     var cp_txt by remember { mutableStateOf("") }
@@ -68,7 +79,8 @@ fun Greeting2(name: String, modifier: Modifier = Modifier) {
     Column( // PARA COLOCAR ELEMENTOS DE FORMA VERTICAL (UNO ENCIMA DE OTRO)
         modifier = Modifier
             .fillMaxSize()
-            .padding(0.dp))
+            .padding(0.dp)
+    )
     {
         Image(
             painter = painterResource(id = R.drawable.splash_image),
@@ -172,48 +184,56 @@ fun Greeting2(name: String, modifier: Modifier = Modifier) {
                 onValueChange = { entry ->
                     ciudad_txt = entry
                 })
+            
+            Row(modifier = Modifier
+                .fillMaxWidth()) {
 
-            ExposedDropdownMenuBox(
-                expanded = expanded,
-                onExpandedChange = {
-                    expanded = !expanded
-                }
-            )
-            {
-                TextField(
-                    readOnly = true,
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f),
                     value = selectedOptionText,
-                    onValueChange = { },
-                    label = { Text("Categories") },
-                    trailingIcon = {
-                        ExposedDropdownMenuDefaults.TrailingIcon(
-                            expanded = expanded
+                    readOnly = true,
+                    label = { Text("Nombre generico") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.password_24),
+                            contentDescription = null
                         )
                     },
-                    colors = ExposedDropdownMenuDefaults.textFieldColors()
-                )
-                //ExposedDropdownMenu(
-                //    expanded = expanded,
-                //    onDismissRequest = {
-                //        expanded = false
-                //    }
-                //) {
-                //    options.forEach { selectionOption ->
-                //        DropdownMenuItem(
-                //            onClick = {
-                //                selectedOptionText = selectionOption
-                //                expanded = false
-                //            }
-                //        ) {
-                //            Text(text = selectionOption)
-                //        }
-                //    }
+                    onValueChange = { })
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                ) {
+                    IconButton(
+                        modifier = Modifier,
+                        onClick = {
+                            expanded = !expanded
+                        })
+                    {
+                        Icon(
+                            painterResource(id = R.drawable.edit_calendar_24),
+                            contentDescription = null)
+                    }
+
+                    DropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
+                        options.forEach{
+                                item -> DropdownMenuItem(
+                            text = { Text(text = item) },
+                            onClick = {
+                                selectedOptionText = item
+                                expanded = false
+                            })
+                        }
+                    }
                 }
             }
-
-
-
-
 
 
 
@@ -223,9 +243,9 @@ fun Greeting2(name: String, modifier: Modifier = Modifier) {
                     .padding(horizontal = 0.dp, vertical = 16.dp),
                 onClick = { }
             ) { Text("Registrar") }
-
         }
     }
+}
 
 
 
@@ -233,6 +253,6 @@ fun Greeting2(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview4() {
     MyappTheme {
-        Greeting2("Android")
+        Greeting2()
     }
 }
