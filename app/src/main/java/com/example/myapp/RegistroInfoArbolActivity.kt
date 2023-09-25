@@ -4,26 +4,22 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,13 +31,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapp.ui.theme.MyappTheme
 
-class RegistroDireccionArbolActivity : ComponentActivity() {
+class RegistroInfoArbolActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -51,7 +46,7 @@ class RegistroDireccionArbolActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting()
+                    Greeting2("Android")
                 }
             }
         }
@@ -60,10 +55,11 @@ class RegistroDireccionArbolActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun Greeting(modifier: Modifier = Modifier) {
-
-    var calle_txt by remember { mutableStateOf("") }
-    var num_txt by remember{ mutableStateOf("") }
+fun Greeting2(name: String, modifier: Modifier = Modifier) {
+    val options = listOf("Food", "Bill Payment", "Recharges", "Outing", "Other")
+    var expanded by remember { mutableStateOf(false) }
+    var selectedOptionText by remember { mutableStateOf(options[0]) }
+    var direccion_txt by remember { mutableStateOf("") }
     var colonia_txt by remember { mutableStateOf("") }
     var cp_txt by remember { mutableStateOf("") }
     var estado_txt by remember { mutableStateOf("") }
@@ -101,35 +97,20 @@ fun Greeting(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp, vertical = 0.dp)
-                ) {
+        ) {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
-                value = calle_txt,
-                label = { Text("Calle") },
+                value = direccion_txt,
+                label = { Text("Dirección") },
                 leadingIcon = {
                     Icon(
-                        painterResource(id = R.drawable.house_24),
+                        painterResource(id = R.drawable.persona_24),
                         contentDescription = null
                     )
                 },
                 onValueChange = { entry ->
-                    calle_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = num_txt,
-                label = { Text("Número") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.gato_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    num_txt = entry
+                    direccion_txt = entry
                 })
 
             OutlinedTextField(
@@ -139,7 +120,7 @@ fun Greeting(modifier: Modifier = Modifier) {
                 label = { Text("Colonia") },
                 leadingIcon = {
                     Icon(
-                        painterResource(id = R.drawable.colonia_24),
+                        painterResource(id = R.drawable.persona_24),
                         contentDescription = null
                     )
                 },
@@ -154,7 +135,7 @@ fun Greeting(modifier: Modifier = Modifier) {
                 label = { Text("Código postal") },
                 leadingIcon = {
                     Icon(
-                        painterResource(id = R.drawable.gato_24),
+                        painterResource(id = R.drawable.persona_24),
                         contentDescription = null
                     )
                 },
@@ -169,7 +150,7 @@ fun Greeting(modifier: Modifier = Modifier) {
                 label = { Text("Estado") },
                 leadingIcon = {
                     Icon(
-                        painterResource(id = R.drawable.colonia_24),
+                        painterResource(id = R.drawable.arroba_email_24),
                         contentDescription = null
                     )
                 },
@@ -184,13 +165,58 @@ fun Greeting(modifier: Modifier = Modifier) {
                 label = { Text("Ciudad") },
                 leadingIcon = {
                     Icon(
-                        painterResource(id = R.drawable.colonia_24),
+                        painterResource(id = R.drawable.password_24),
                         contentDescription = null
                     )
                 },
                 onValueChange = { entry ->
                     ciudad_txt = entry
                 })
+
+            ExposedDropdownMenuBox(
+                expanded = expanded,
+                onExpandedChange = {
+                    expanded = !expanded
+                }
+            )
+            {
+                TextField(
+                    readOnly = true,
+                    value = selectedOptionText,
+                    onValueChange = { },
+                    label = { Text("Categories") },
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(
+                            expanded = expanded
+                        )
+                    },
+                    colors = ExposedDropdownMenuDefaults.textFieldColors()
+                )
+                //ExposedDropdownMenu(
+                //    expanded = expanded,
+                //    onDismissRequest = {
+                //        expanded = false
+                //    }
+                //) {
+                //    options.forEach { selectionOption ->
+                //        DropdownMenuItem(
+                //            onClick = {
+                //                selectedOptionText = selectionOption
+                //                expanded = false
+                //            }
+                //        ) {
+                //            Text(text = selectionOption)
+                //        }
+                //    }
+                }
+            }
+
+
+
+
+
+
+
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -200,13 +226,13 @@ fun Greeting(modifier: Modifier = Modifier) {
 
         }
     }
-}
+
 
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun GreetingPreview4() {
     MyappTheme {
-        Greeting()
+        Greeting2("Android")
     }
 }
