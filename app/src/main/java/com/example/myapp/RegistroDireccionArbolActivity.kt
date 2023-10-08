@@ -63,7 +63,8 @@ class RegistroDireccionArbolActivity : ComponentActivity() {
 fun Greeting(modifier: Modifier = Modifier) {
 
     var calle_txt by remember { mutableStateOf("") }
-    var num_txt by remember{ mutableStateOf("") }
+    var numExt_txt by remember{ mutableStateOf("") }
+    var numInt_txt by remember{ mutableStateOf("") }
     var colonia_txt by remember { mutableStateOf("") }
     var cp_txt by remember { mutableStateOf("") }
     var estado_txt by remember { mutableStateOf("") }
@@ -117,20 +118,39 @@ fun Greeting(modifier: Modifier = Modifier) {
                     calle_txt = entry
                 })
 
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = num_txt,
-                label = { Text("Número") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.gato_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    num_txt = entry
-                })
+            Row() {
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f),
+                    value = numExt_txt,
+                    label = { Text("Núm. Ext.") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.gato_24),
+                            contentDescription = null
+                        )
+                    },
+                    onValueChange = { entry ->
+                        numExt_txt = entry
+                    })
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = numInt_txt,
+                    label = { Text("Núm. Int.") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.gato_24),
+                            contentDescription = null
+                        )
+                    },
+                    onValueChange = { entry ->
+                        numInt_txt = entry
+                    })
+            }
 
             OutlinedTextField(
                 modifier = Modifier
@@ -146,7 +166,35 @@ fun Greeting(modifier: Modifier = Modifier) {
                 onValueChange = { entry ->
                     colonia_txt = entry
                 })
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = ciudad_txt,
+                label = { Text("Ciudad") },
+                leadingIcon = {
+                    Icon(
+                        painterResource(id = R.drawable.colonia_24),
+                        contentDescription = null
+                    )
+                },
+                onValueChange = { entry ->
+                    ciudad_txt = entry
+                })
 
+            OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+            value = estado_txt,
+            label = { Text("Estado") },
+            leadingIcon = {
+                Icon(
+                    painterResource(id = R.drawable.colonia_24),
+                    contentDescription = null
+                )
+            },
+            onValueChange = { entry ->
+                estado_txt = entry
+            })
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -162,35 +210,6 @@ fun Greeting(modifier: Modifier = Modifier) {
                     cp_txt = entry
                 })
 
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = estado_txt,
-                label = { Text("Estado") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.colonia_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    estado_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = ciudad_txt,
-                label = { Text("Ciudad") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.colonia_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    ciudad_txt = entry
-                })
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
