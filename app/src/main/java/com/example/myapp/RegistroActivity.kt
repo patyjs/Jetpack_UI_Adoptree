@@ -94,7 +94,8 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
     Column( // PARA COLOCAR ELEMENTOS DE FORMA VERTICAL (UNO ENCIMA DE OTRO)
         modifier = Modifier
             .fillMaxSize()
-            .padding(0.dp))
+            .padding(0.dp)
+            .verticalScroll(rememberScrollState()))
     {
         Image(
             painter = painterResource(id = R.drawable.splash_image),
@@ -122,8 +123,7 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
         Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp)
-                    .verticalScroll(rememberScrollState())){
+                    .padding(horizontal = 32.dp, vertical = 0.dp)) {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
