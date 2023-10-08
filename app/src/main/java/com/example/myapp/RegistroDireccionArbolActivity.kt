@@ -73,7 +73,8 @@ fun Greeting(modifier: Modifier = Modifier) {
     Column( // PARA COLOCAR ELEMENTOS DE FORMA VERTICAL (UNO ENCIMA DE OTRO)
         modifier = Modifier
             .fillMaxSize()
-            .padding(0.dp))
+            .padding(0.dp)
+            .verticalScroll(rememberScrollState()))
     {
         Image(
             painter = painterResource(id = R.drawable.splash_image),
