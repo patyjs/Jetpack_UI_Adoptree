@@ -13,6 +13,17 @@
         android:theme="@style/Theme.Myapp"
         tools:targetApi="31">
         <activity
+            android:name=".MisArbolesActivity"
+            android:exported="true"
+            android:label="@string/title_activity_mis_arboles"
+            android:theme="@style/Theme.Myapp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".RegistroInfoArbolActivity"
             android:exported="false"
             android:label="@string/title_activity_registro_info_arbol"
@@ -29,14 +40,10 @@
             android:theme="@style/Theme.Myapp" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.Myapp">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
