@@ -5,8 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,6 +22,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -59,7 +63,7 @@ fun CargarMisArboles(modifier: Modifier = Modifier) {
         MisArbolesModel("Honestidad", "Ahuehuete",R.drawable.img),
     )
 
-    Column() {
+    Column {
         Text(
             text = "Mis árboles",
             fontSize = 28.sp,
@@ -93,7 +97,7 @@ fun CargarMisArboles(modifier: Modifier = Modifier) {
 @Composable
 fun DrawCard(arbolData :MisArbolesModel, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
-        Row() {
+        Row {
             Image(
                 painter = painterResource(arbolData.ImageId),
                 contentDescription = "",
@@ -104,20 +108,39 @@ fun DrawCard(arbolData :MisArbolesModel, modifier: Modifier = Modifier) {
             )
             Column(modifier = Modifier
                 .fillMaxWidth()
+                .fillMaxHeight()
                 .padding(16.dp, 8.dp)) {
                 Text(
                     text = arbolData.ValorMoral,
                     modifier = Modifier,
                     style = MaterialTheme.typography.headlineSmall
                 )
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = arbolData.NombreArbol,
                     modifier = Modifier,
                     style = MaterialTheme.typography.headlineSmall
                 )
-            }
 
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(0.dp),
+                    verticalArrangement = Arrangement.Bottom,
+                    horizontalAlignment = Alignment.End
+                ){
+                    IconButton(
+                        modifier = Modifier,
+                        onClick = { })
+                    {
+                        Icon(
+                            painterResource(id = R.drawable.delete_24),
+                            contentDescription = null)
+                    }
+                }
+            }
         }
+
     }
 }
 
