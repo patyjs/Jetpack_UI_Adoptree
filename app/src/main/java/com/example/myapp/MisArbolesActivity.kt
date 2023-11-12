@@ -144,6 +144,8 @@ fun DrawCard(arbolData :MisArbolesModel, modifier: Modifier = Modifier) {
     }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview5() {

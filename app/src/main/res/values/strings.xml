@@ -5,4 +5,5 @@
     <string name="title_activity_registro_direccion_arbol">RegistroDireccionArbolActivity</string>
     <string name="title_activity_registro_info_arbol">RegistroInfoArbolActivity</string>
     <string name="title_activity_mis_arboles">MisArbolesActivity</string>
+    <string name="title_activity_historial">HistorialActivity</string>
 </resources>
