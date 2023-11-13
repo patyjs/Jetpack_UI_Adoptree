@@ -44,15 +44,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.compose.AdoptTheme
 import com.example.myapp.Models.HistorialServiciosModel
 import com.example.myapp.Models.MisArbolesModel
-import com.example.myapp.ui.theme.MyappTheme
+//import com.example.myapp.ui.theme.MyappTheme
 
 class HistorialActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyappTheme {
+            AdoptTheme() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -68,12 +69,9 @@ class HistorialActivity : ComponentActivity() {
 @Composable
 fun Greeting3(modifier: Modifier = Modifier) {
     val misArboles: List<HistorialServiciosModel> = listOf<HistorialServiciosModel>(
-        HistorialServiciosModel("Poda", "12 de octubre",R.drawable.img),
-        HistorialServiciosModel("Riego", "5 de julio",R.drawable.img),
-        HistorialServiciosModel("Fertilizacion", "1 de noviembre",R.drawable.img),
-        HistorialServiciosModel("Poda", "12 de octubre",R.drawable.img),
-        HistorialServiciosModel("Riego", "5 de julio",R.drawable.img),
-        HistorialServiciosModel("Riego", "5 de julio",R.drawable.img),
+        HistorialServiciosModel("Poda", "12 de octubre",R.drawable.poda),
+        HistorialServiciosModel("Riego", "5 de julio",R.drawable.riego1),
+        HistorialServiciosModel("Fertilizacion", "1 de noviembre",R.drawable.fertilizante),
     )
 
     Column {
@@ -164,7 +162,7 @@ fun DrawHistoryCard(data: HistorialServiciosModel, modifier: Modifier = Modifier
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview6() {
-    MyappTheme {
+    AdoptTheme(darkTheme = false) {
         // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -172,5 +170,12 @@ fun GreetingPreview6() {
         ) {
             Greeting3()
         }
+    }
+}
+@Preview
+@Composable
+fun GreetingDarkPreview6() {
+    AdoptTheme(darkTheme = true) {
+        Greeting3()
     }
 }

@@ -46,13 +46,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myapp.ui.theme.MyappTheme
+import com.example.compose.AdoptTheme
+//import com.example.myapp.ui.theme.MyappTheme
 
 class RegistroActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyappTheme {
+            AdoptTheme() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -216,7 +217,7 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
             ){
                 OutlinedTextField(
                     modifier = Modifier
-                        .clickable(enabled = false) {  }
+                        .clickable(enabled = false) { }
                         .fillMaxWidth(0.8f),
 
                     value = selectedDateText,
@@ -292,7 +293,7 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview3() {
-    MyappTheme {
+    AdoptTheme() {
         InitializeRegistroUI("Android")
     }
 }
