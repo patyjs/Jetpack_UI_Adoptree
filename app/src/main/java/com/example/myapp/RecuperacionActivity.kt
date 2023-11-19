@@ -90,6 +90,7 @@ fun Greeting4(name: String, modifier: Modifier = Modifier) {
                 modifier = modifier,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Normal
+
             )
             Text(
                 text = "Te enviaremos un enlace de verificación a esta dirección de correo electrónico.",

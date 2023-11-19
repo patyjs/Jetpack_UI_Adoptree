@@ -8,4 +8,5 @@
     <string name="title_activity_historial">HistorialActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_recuperacion">RecuperacionActivity</string>
+    <string name="title_activity_servicios">ServiciosActivity</string>
 </resources>
