@@ -13,6 +13,11 @@
         android:theme="@style/Theme.Myapp"
         tools:targetApi="31">
         <activity
+            android:name=".RecuperacionActivity"
+            android:exported="false"
+            android:label="@string/title_activity_recuperacion"
+            android:theme="@style/Theme.Myapp" />
+        <activity
             android:name=".HistorialActivity"
             android:exported="false"
             android:label="@string/title_activity_historial"
@@ -47,7 +52,7 @@
             android:name=".LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.Myapp"></activity>
+            android:theme="@style/Theme.Myapp" />
     </application>
 
 </manifest>

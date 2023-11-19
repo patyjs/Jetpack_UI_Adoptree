@@ -6,4 +6,6 @@
     <string name="title_activity_registro_info_arbol">RegistroInfoArbolActivity</string>
     <string name="title_activity_mis_arboles">MisArbolesActivity</string>
     <string name="title_activity_historial">HistorialActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_recuperacion">RecuperacionActivity</string>
 </resources>

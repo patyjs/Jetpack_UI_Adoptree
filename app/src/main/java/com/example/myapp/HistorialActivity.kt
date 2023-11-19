@@ -69,9 +69,9 @@ class HistorialActivity : ComponentActivity() {
 @Composable
 fun Greeting3(modifier: Modifier = Modifier) {
     val misArboles: List<HistorialServiciosModel> = listOf<HistorialServiciosModel>(
-        HistorialServiciosModel("Poda", "12 de octubre",R.drawable.poda),
-        HistorialServiciosModel("Riego", "5 de julio",R.drawable.riego1),
-        HistorialServiciosModel("Fertilizacion", "1 de noviembre",R.drawable.fertilizante),
+        HistorialServiciosModel("8335896325", "Poda","12 de octubre",R.drawable.poda),
+        HistorialServiciosModel("8335896325","Riego", "5 de julio",R.drawable.riego1),
+        HistorialServiciosModel("8335896325","Fertilización", "1 de noviembre",R.drawable.fertilizante),
     )
 
     Column {
