@@ -59,9 +59,9 @@ class MisArbolesActivity : ComponentActivity() {
 @Composable
 fun CargarMisArboles(modifier: Modifier = Modifier) {
     val misArboles: List<MisArbolesModel> = listOf<MisArbolesModel>(
-        MisArbolesModel("Honestidad", "Ahuehuete",R.drawable.img),
-        MisArbolesModel("Honestidad", "Ahuehuete",R.drawable.img),
-        MisArbolesModel("Honestidad", "Ahuehuete",R.drawable.img),
+        MisArbolesModel("Honestidad", "Ahuehuete",R.drawable.tree),
+        MisArbolesModel("Honestidad", "Ahuehuete",R.drawable.tree),
+        MisArbolesModel("Honestidad", "Ahuehuete",R.drawable.tree),
     )
 
     Column {
@@ -150,7 +150,26 @@ fun DrawCard(arbolData :MisArbolesModel, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview5() {
-    AdoptTheme() {
-        CargarMisArboles()
+    AdoptTheme(darkTheme = false) {
+
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ){
+            CargarMisArboles()
+        }
+    }
+}
+
+@Preview
+@Composable
+fun GreetingDarkPreview5() {
+    AdoptTheme(darkTheme = true) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            CargarMisArboles()
+        }
     }
 }

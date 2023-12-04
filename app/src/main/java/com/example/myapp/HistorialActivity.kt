@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +38,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -69,9 +71,24 @@ class HistorialActivity : ComponentActivity() {
 @Composable
 fun Greeting3(modifier: Modifier = Modifier) {
     val misArboles: List<HistorialServiciosModel> = listOf<HistorialServiciosModel>(
-        HistorialServiciosModel("8335896325", "Poda","12 de octubre",R.drawable.poda),
-        HistorialServiciosModel("8335896325","Riego", "5 de julio",R.drawable.riego1),
-        HistorialServiciosModel("8335896325","Fertilización", "1 de noviembre",R.drawable.fertilizante),
+        HistorialServiciosModel("8335896325", "Podar","12 de octubre 2023",R.drawable.pod),
+        HistorialServiciosModel("8335896325","Regar", "5 de julio",R.drawable.ri),
+        HistorialServiciosModel("8335896325","Fertilizar", "1 de noviembre",R.drawable.fertilizante),
+        HistorialServiciosModel("8335896325", "Podar","12 de octubre",R.drawable.pod),
+        HistorialServiciosModel("8335896325","Regar", "5 de julio",R.drawable.ri),
+        HistorialServiciosModel("8335896325","Fertilizar", "1 de noviembre",R.drawable.fertilizante),
+        HistorialServiciosModel("8335896325", "Podar","12 de octubre",R.drawable.pod),
+        HistorialServiciosModel("8335896325","Regar", "5 de julio",R.drawable.ri),
+        HistorialServiciosModel("8335896325","Fertilizar", "1 de noviembre",R.drawable.fertilizante),
+        HistorialServiciosModel("8335896325", "Podar","12 de octubre 2023",R.drawable.pod),
+        HistorialServiciosModel("8335896325","Regar", "5 de julio",R.drawable.ri),
+        HistorialServiciosModel("8335896325","Fertilizar", "1 de noviembre",R.drawable.fertilizante),
+        HistorialServiciosModel("8335896325", "Podar","12 de octubre",R.drawable.pod),
+        HistorialServiciosModel("8335896325","Regar", "5 de julio",R.drawable.ri),
+        HistorialServiciosModel("8335896325","Fertilizar", "1 de noviembre",R.drawable.fertilizante),
+        HistorialServiciosModel("8335896325", "Podar","12 de octubre",R.drawable.pod),
+        HistorialServiciosModel("8335896325","Regar", "5 de julio",R.drawable.ri),
+        HistorialServiciosModel("8335896325","Fertilizar", "1 de noviembre",R.drawable.fertilizante),
     )
 
     Column {
@@ -95,67 +112,40 @@ fun Greeting3(modifier: Modifier = Modifier) {
 
 @Composable
 fun DrawHistoryCard(data: HistorialServiciosModel, modifier: Modifier = Modifier) {
-    var expanded by remember { mutableStateOf(false) }
-    Card(modifier = modifier
-        .animateContentSize(
-            animationSpec = spring(
-                dampingRatio = Spring.DampingRatioNoBouncy,
-                stiffness = Spring.StiffnessMedium
-            ))
-    ) {
-        Column {
-            Row {
-                Image(
-                    painter = painterResource(data.ImageId),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .padding(24.dp, 24.dp, 0.dp, 24.dp)
-                        .width(75.dp)
-                        .height(75.dp)
-                        .clip(RoundedCornerShape(38.dp)),
-                    contentScale = ContentScale.Crop
-                )
+    Column(modifier = Modifier
+        .padding(16.dp, 8.dp)) {
+        Row(modifier = Modifier
+            .fillMaxWidth()) {
+            Image(
+                painter = painterResource(data.ImageId),
+                contentDescription = "",
+                modifier = Modifier
+                    .width(65.dp)
+                    .height(65.dp)
+                    .clip(RoundedCornerShape(38.dp)),
+                contentScale = ContentScale.Crop
+            )
 
+            Column(modifier = Modifier
+                .padding(16.dp, 0.dp)
+                .fillMaxWidth(),
+                verticalArrangement = Arrangement.Center ){
                 Text(
                     text = data.Servicio,
-                    modifier = Modifier
-                        .padding(16.dp),
                     style = MaterialTheme.typography.headlineSmall
                 )
-                Spacer(Modifier.weight(1f))
+                Text(
+                    text = data.Fecha,
+                    style = MaterialTheme.typography.bodySmall
+                )
+                //Spacer(Modifier.weight(1f))
 
-                IconButton(
-                    modifier = Modifier
-                        .size(64.dp)
-                        .padding(16.dp),
-                    onClick = {
-                        expanded = !expanded
-                    })
-                {
-                    Icon(
-                        painterResource(
-                            id = if(expanded) R.drawable.arrow_up_24 else R.drawable.arrow_down_24),
-                        contentDescription = null)
-                }
-            }
-
-            if (expanded) {
-                Column(
-                    modifier = Modifier
-                        .padding(16.dp)
-                ) {
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = data.Fecha,
-                        modifier = Modifier,
-                        style = MaterialTheme.typography.headlineSmall
-                    )
-                }
             }
         }
 
-
+        Divider(color = Color.LightGray, thickness = 2.dp, modifier = Modifier)
     }
+
 }
 
 
@@ -176,6 +166,11 @@ fun GreetingPreview6() {
 @Composable
 fun GreetingDarkPreview6() {
     AdoptTheme(darkTheme = true) {
-        Greeting3()
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Greeting3()
+        }
     }
 }

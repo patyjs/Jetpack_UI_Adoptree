@@ -225,9 +225,29 @@ fun Greeting(modifier: Modifier = Modifier) {
 
 
 @Preview(showBackground = true)
+        @Composable
+        fun GreetingPreview() {
+            AdoptTheme(darkTheme = false) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                )
+                {
+                    Greeting()
+                }
+            }
+}
+
+@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    AdoptTheme() {
-        Greeting()
+fun GreetingDarkPreview() {
+    AdoptTheme(darkTheme = true) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        )
+        {
+            Greeting()
+        }
     }
 }

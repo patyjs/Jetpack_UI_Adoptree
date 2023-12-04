@@ -86,14 +86,14 @@ fun Greeting4(name: String, modifier: Modifier = Modifier) {
                 .padding(horizontal = 32.dp, vertical = 20.dp)) {
 
             Text(
-                text = "Por favor, ingresa tu dirección de correo electrónico asociada con tu cuenta para iniciar el proceso de restablecimiento de contraseña.",
+                text = "Ingresa tu dirección de correo electrónico asociada con tu cuenta.",
                 modifier = modifier,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Normal
 
             )
             Text(
-                text = "Te enviaremos un enlace de verificación a esta dirección de correo electrónico.",
+                text = "Te enviaremos un enlace de verificación.",
                 modifier = modifier,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Normal
@@ -130,7 +130,27 @@ fun Greeting4(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview7() {
-    AdoptTheme() {
-        Greeting4("Android")
+    AdoptTheme(darkTheme = false) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        )
+        {
+            Greeting4("Android")
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingDarkPreview7() {
+    AdoptTheme(darkTheme = true) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        )
+        {
+            Greeting4("Android")
+        }
     }
 }

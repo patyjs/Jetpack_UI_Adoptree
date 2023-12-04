@@ -5,14 +5,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,9 +38,12 @@ import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,7 +61,7 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    InitializeUI("Android")
+                    InitializeUI("Android",isSystemInDarkTheme())
                 }
             }
         }
@@ -63,157 +70,159 @@ class LoginActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InitializeUI(name: String, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
+fun InitializeUI(name: String, darktheme: Boolean,modifier: Modifier = Modifier) {
 
     var email_txt by remember { mutableStateOf("") }
     var password_txt by remember { mutableStateOf("") }
 
-    Column( // PARA COLOCAR ELEMENTOS DE FORMA VERTICAL (UNO ENCIMA DE OTRO)
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(0.dp))
-    {
-        Image(
-            painter = painterResource(id = R.drawable.splash_image),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .height(270.dp)
-        )
-
-        // SE UTLILIZAN COLUMNAS ANIDADAS PARA AGRUPAR Y ORGANIZAR ELEMENTOS, SIN PERDER EL APILAMIENTO VERTICAL
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 0.dp, vertical = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally, //centrar elementos de forma horizontal
-        ) {
-            Text(
-                text = "Iniciar sesion",
-                modifier = modifier,
-                fontSize = 22.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-        }
-
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp, vertical = 0.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            //horizontalAlignment = Alignment.CenterHorizontally,
-
-        ) {
-            // Text(
-            //     text = "Correo electronico",
-            //     modifier = modifier
-            // )
-
-            //Image(
-              //  painter = painterResource(id = R.drawable.arroba_email_24),
-                //contentDescription = null,
-                //modifier = Modifier
-                  //  .width(36.dp)
-            //)
-
-            // Spacer(modifier = Modifier.width(12.dp))
-
-            OutlinedTextField(
+    Box(modifier = Modifier.fillMaxSize()) {
+        if (!darktheme){
+            Image(
+                painterResource(id = R.drawable.splash_image),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxWidth(),
-                value = email_txt,
-                label = { Text( "Correo electronico") },
-                leadingIcon = {
-                    Icon(painterResource(id = R.drawable.arroba_email_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    email_txt = entry
-                }
+                    .height(270.dp)
+                    .fillMaxWidth()
             )
-        }
-
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp, vertical = 0.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            //horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            // Text(
-            //     text = "Contrasena",
-            //     modifier = modifier
-            // )
-
-            // Image(
-               // painter = painterResource(id = R.drawable.password_24),
-                //contentDescription = null,
-               // modifier = Modifier
-                 //   .width(36.dp)
-            //)
-
-            // Spacer(modifier = Modifier.width(12.dp))
-
-            OutlinedTextField(
+        } else {
+            Image(
+                painterResource(id = R.drawable.version4),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxWidth(),
-                value = password_txt,
-                label = { Text( "Contrasena") },
-                visualTransformation = PasswordVisualTransformation(),
-                leadingIcon = {
-                      Icon(painterResource(id = R.drawable.password_24),
-                      contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    password_txt = entry
-                }
+                    .height(270.dp)
+                    .fillMaxWidth()
             )
         }
 
-        Button(
+        Surface(
+            color = MaterialTheme.colorScheme.surface,
+            shape = RoundedCornerShape(
+                topStartPercent = 6,
+                topEndPercent = 6
+            ),
             modifier = Modifier
+                .padding(top = 250.dp)
                 .fillMaxWidth()
-                .padding(horizontal = 32.dp, vertical = 16.dp),
-            onClick = {  }
+                .fillMaxHeight()
         ) {
-            Text("Acceder")
-        }
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 0.dp, vertical = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally, //centrar elementos de forma horizontal
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 32.dp, vertical = 32.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Iniciar sesión",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
 
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(0.dp, 32.dp, 0.dp, 0.dp),
+                    value = email_txt,
+                    label = { Text("Correo electrónico") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.arroba_email_24),
+                            contentDescription = null
+                        )
+                    },
+                    onValueChange = { entry ->
+                        email_txt = entry
+                    }
+                )
 
-        ) {
-            Text(
-                text = "¿No tienes una cuenta?",
-                modifier = modifier,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Normal
-            )
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = password_txt,
+                    label = { Text("Contraseña") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.password_24),
+                            contentDescription = null
+                        )
+                    },
+                    onValueChange = { entry ->
+                        password_txt = entry
+                    }
+                )
 
-            ClickableText(
-                text = AnnotatedString(
-                    text = "Crea una aquí.",
-                ),
-                modifier = modifier,
-                onClick = {
-                    // INICIA UN ACTIVITY NUEVO DE LA CLASE REGISTROACTIVITY Y NAVEGA A SU INTERFAZ
-                    context.startActivity(Intent(context, RegistroActivity::class.java))
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 32.dp, vertical = 16.dp),
+                    onClick = {  }
+                ) {
+                    Text("Acceder")
                 }
-            )
-        }
 
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 0.dp, vertical = 32.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally, //centrar elementos de forma horizontal
+
+
+                ) {
+                    Text(
+                        text = "¿No tienes una cuenta?",
+                        modifier = modifier,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+
+                    ClickableText(
+                        text = buildAnnotatedString {
+                            withStyle(
+                                style = SpanStyle(MaterialTheme.colorScheme.primary)
+                            ) {
+                                append("Crea tu cuenta aqui")
+                            }
+                        },
+                        modifier = modifier,
+                        onClick = {
+                            // INICIA UN ACTIVITY NUEVO DE LA CLASE REGISTROACTIVITY Y NAVEGA A SU INTERFAZ
+                            //context.startActivity(Intent(context, RegistroActivity::class.java))
+                        }
+                    )
+
+                }
+
+            }
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview2() {
-    AdoptTheme() {
-        InitializeUI("Android")
+    AdoptTheme(darkTheme = false) {
+        // A surface container using the 'background' color from the theme
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            InitializeUI("Android",false)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun GreetingDarkPreview2() {
+    AdoptTheme(darkTheme = true) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            InitializeUI("",true)
+        }
     }
 }

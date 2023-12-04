@@ -7,6 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -59,7 +62,7 @@ class RegistroActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    InitializeRegistroUI("Android")
+                    InitializeRegistroUI("Android", isSystemInDarkTheme())
                 }
             }
         }
@@ -68,7 +71,7 @@ class RegistroActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
+fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = Modifier) {
     val context = LocalContext.current
 
     var name_txt by remember { mutableStateOf("") }
@@ -81,7 +84,7 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
     var curp_txt by remember { mutableStateOf("") }
     var selectedDateText by remember { mutableStateOf("") }
 
-    // SE INICIALIZA UNA VARIABLE CON UN OBJETO DEL TIPO DATEPICKERDIALOG, CON UNA FECHA PREDETERMINADA DE 01/06/2022
+// SE INICIALIZA UNA VARIABLE CON UN OBJETO DEL TIPO DATEPICKERDIALOG, CON UNA FECHA PREDETERMINADA DE 01/06/2022
     // PARA MANDARLO A LLAMAR DESDE LA ORDEN DE EJECUCION DE UN BOTON
     // EL DATEPICKER NO ES UN ELEMENTO DE LA INTERFAZ, ES UN ELEMENTO EMERGENTE DEL SISTEMA QUE SE LLAMA EN EL MOMENTO DE SER REQUERIDO
     val datePicker = DatePickerDialog(
@@ -91,209 +94,242 @@ fun InitializeRegistroUI(name: String, modifier: Modifier = Modifier) {
         }, 2023, 6, 1
     )
 
-
-    Column( // PARA COLOCAR ELEMENTOS DE FORMA VERTICAL (UNO ENCIMA DE OTRO)
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(0.dp)
-            .verticalScroll(rememberScrollState()))
-    {
-        Image(
-            painter = painterResource(id = R.drawable.splash_image),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .height(270.dp)
-        )
-
-        // SE UTLILIZAN COLUMNAS ANIDADAS PARA AGRUPAR Y ORGANIZAR ELEMENTOS, SIN PERDER EL APILAMIENTO VERTICAL
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 0.dp, vertical = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally, //centrar elementos de forma horizontal
-        ) {
-            Text(
-                text = "Registro",
-                modifier = modifier,
-                fontSize = 22.sp,
-                fontWeight = FontWeight.SemiBold
+    Box(modifier = Modifier.fillMaxSize()) {
+        if (!darktheme){
+            Image(
+                painterResource(id = R.drawable.splash_image),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .height(270.dp)
+                    .fillMaxWidth()
+            )
+        } else {
+            Image(
+                painterResource(id = R.drawable.version4),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .height(270.dp)
+                    .fillMaxWidth()
             )
         }
 
-        Column(
+        Surface(
+            color = MaterialTheme.colorScheme.surface,
+            shape = RoundedCornerShape(
+                topStartPercent = 6,
+                topEndPercent = 6
+            ),
+            modifier = Modifier
+                .padding(top = 250.dp)
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .verticalScroll(rememberScrollState())
+        ) {
+
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 0.dp)) {
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = name_txt,
-                label = { Text( "Nombre(s)") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.persona_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    name_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = pat_txt,
-                label = { Text( "Apellido paterno") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.persona_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    pat_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = mat_txt,
-                label = { Text( "Apellido materno") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.persona_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    mat_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = email_txt,
-                label = { Text( "Correo") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.arroba_email_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    email_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = password_txt,
-                label = { Text( "Crear contraseña") },
-                visualTransformation = PasswordVisualTransformation(),
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.password_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    password_txt = entry
-                })
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = password2_txt,
-                label = { Text( "Repetir contraseña") },
-                visualTransformation = PasswordVisualTransformation(),
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.password_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    password2_txt = entry
-                })
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                    .padding(horizontal = 32.dp, vertical = 32.dp),
+                //.verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
             ){
+                Text(
+                    text = "Registro",
+                    modifier = modifier,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 32.dp, vertical = 85.dp)) {
                 OutlinedTextField(
                     modifier = Modifier
-                        .clickable(enabled = false) { }
-                        .fillMaxWidth(0.8f),
-
-                    value = selectedDateText,
-                    label = { Text( "Fecha de nacimiento" ) },
+                        .fillMaxWidth(),
+                    value = name_txt,
+                    label = { Text( "Nombre(s)") },
                     leadingIcon = {
                         Icon(
-                            painterResource(id = R.drawable.calendar_month_24),
+                            painterResource(id = R.drawable.persona_24),
+                            contentDescription = null)
+                    },
+                    onValueChange = { entry ->
+                        name_txt = entry
+                    })
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = pat_txt,
+                    label = { Text( "Apellido paterno") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.persona_24),
+                            contentDescription = null)
+                    },
+                    onValueChange = { entry ->
+                        pat_txt = entry
+                    })
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = mat_txt,
+                    label = { Text( "Apellido materno") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.persona_24),
+                            contentDescription = null)
+                    },
+                    onValueChange = { entry ->
+                        mat_txt = entry
+                    })
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = email_txt,
+                    label = { Text( "Correo") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.arroba_email_24),
+                            contentDescription = null)
+                    },
+                    onValueChange = { entry ->
+                        email_txt = entry
+                    })
+
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = password_txt,
+                    label = { Text( "Crear contraseña") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.password_24),
                             contentDescription = null)
                     },
                     onValueChange = { entry ->
                         password_txt = entry
                     })
 
-                Spacer(modifier = Modifier.width(8.dp))
-
-                IconButton(
+                OutlinedTextField(
                     modifier = Modifier
-                        .fillMaxHeight()
-                        .align(Alignment.CenterVertically),
-                    onClick = {
-                        // MUESTRA UN DATEPICKER DEL SISTEMA
-                        datePicker.show()
+                        .fillMaxWidth(),
+                    value = password2_txt,
+                    label = { Text( "Repetir contraseña") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.password_24),
+                            contentDescription = null)
+                    },
+                    onValueChange = { entry ->
+                        password2_txt = entry
                     })
-                {
-                    Icon(
-                        painterResource(id = R.drawable.edit_calendar_24),
-                        contentDescription = null)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                ){
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .clickable(enabled = false) { }
+                            .fillMaxWidth(0.8f),
+
+                        value = selectedDateText,
+                        label = { Text( "Fecha de nacimiento" ) },
+                        leadingIcon = {
+                            Icon(
+                                painterResource(id = R.drawable.calendar_month_24),
+                                contentDescription = null)
+                        },
+                        onValueChange = { entry ->
+                            password_txt = entry
+                        })
+
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                    IconButton(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .align(Alignment.CenterVertically),
+                        onClick = {
+                            // MUESTRA UN DATEPICKER DEL SISTEMA
+                            datePicker.show()
+                        })
+                    {
+                        Icon(
+                            painterResource(id = R.drawable.edit_calendar_24),
+                            contentDescription = null)
+                    }
                 }
-            }
 
 
 
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = cel_txt,
-                label = { Text( "Número celular") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.phone_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    cel_txt = entry
-                })
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = cel_txt,
+                    label = { Text( "Número celular") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.phone_24),
+                            contentDescription = null)
+                    },
+                    onValueChange = { entry ->
+                        cel_txt = entry
+                    })
 
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = curp_txt,
-                label = { Text( "Curp") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.curp_24),
-                        contentDescription = null)
-                },
-                onValueChange = { entry ->
-                    curp_txt = entry
-                })
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    value = curp_txt,
+                    label = { Text( "Curp") },
+                    leadingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.curp_24),
+                            contentDescription = null)
+                    },
+                    onValueChange = { entry ->
+                        curp_txt = entry
+                    })
 
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 0.dp, vertical = 16.dp),
-                onClick = {  }
-            ) { Text("Registrar") }
-
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 0.dp, vertical = 16.dp),
+                    onClick = {  }
+                ) { Text("Registrar") }
             }
         }
+    }
     }
 
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview3() {
-    AdoptTheme() {
-        InitializeRegistroUI("Android")
+    AdoptTheme(darkTheme = false){
+        Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background)
+        {
+            InitializeRegistroUI("Android",false)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun GreetingDarkPreview3() {
+    AdoptTheme(darkTheme = true) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            InitializeRegistroUI("", true)
+        }
     }
 }
