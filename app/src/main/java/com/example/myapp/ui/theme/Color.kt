@@ -65,3 +65,4 @@ val md_theme_dark_scrim = Color(0xFF000000)
 
 //val md_theme_dark_primaryContainer = Color(0xFF13665c)
 val seed = Color(0xFF396A1F)
+val md_theme_light_logo = Color(0xFF91C366)

@@ -14,11 +14,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -103,8 +105,8 @@ fun DrawCard(arbolData :MisArbolesModel, modifier: Modifier = Modifier) {
                 painter = painterResource(arbolData.ImageId),
                 contentDescription = "",
                 modifier = Modifier
-                    .width(150.dp)
-                    .height(150.dp),
+                    .width(125.dp)
+                    .height(140.dp),
                 contentScale = ContentScale.Crop
             )
             Column(modifier = Modifier
@@ -123,22 +125,36 @@ fun DrawCard(arbolData :MisArbolesModel, modifier: Modifier = Modifier) {
                     style = MaterialTheme.typography.headlineSmall
                 )
 
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(0.dp),
-                    verticalArrangement = Arrangement.Bottom,
-                    horizontalAlignment = Alignment.End
-                ){
-                    IconButton(
-                        modifier = Modifier,
-                        onClick = { })
-                    {
-                        Icon(
-                            painterResource(id = R.drawable.delete_24),
-                            contentDescription = null)
+                Row {
+                    Button(modifier = Modifier,
+                        onClick = {  }) {
+                        Text("Registrar", fontSize = 12.sp)
+
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Button(modifier = Modifier,
+                        onClick = {  }) {
+                        Text("Comentar", fontSize = 12.sp)
+
                     }
                 }
+
+                // Column(
+                //     modifier = Modifier
+                //         .fillMaxSize()
+                //         .padding(0.dp),
+                //     verticalArrangement = Arrangement.Bottom,
+                //     horizontalAlignment = Alignment.End
+                // ){
+                //     IconButton(
+                //         modifier = Modifier,
+                //         onClick = { })
+                //     {
+                //         Icon(
+                //             painterResource(id = R.drawable.delete_24),
+                //             contentDescription = null)
+                //     }
+                // }
             }
         }
 
