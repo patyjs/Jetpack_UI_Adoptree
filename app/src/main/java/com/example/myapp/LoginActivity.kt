@@ -126,12 +126,12 @@ fun InitializeUI(name: String, darktheme: Boolean,modifier: Modifier = Modifier)
                         .padding(0.dp, 32.dp, 0.dp, 0.dp),
                     value = email_txt,
                     label = { Text("Correo electrónico") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.arroba_email_24),
-                            contentDescription = null
-                        )
-                    },
+                  //  leadingIcon = {
+                    //    Icon(
+                    //        painterResource(id = R.drawable.arroba_email_24),
+                    //        contentDescription = null
+                    //    )
+                   // },
                     onValueChange = { entry ->
                         email_txt = entry
                     }
@@ -143,21 +143,53 @@ fun InitializeUI(name: String, darktheme: Boolean,modifier: Modifier = Modifier)
                     value = password_txt,
                     label = { Text("Contraseña") },
                     visualTransformation = PasswordVisualTransformation(),
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.password_24),
-                            contentDescription = null
-                        )
-                    },
+                   // leadingIcon = {
+                     //   Icon(
+                        //    painterResource(id = R.drawable.password_24),
+                        //    contentDescription = null
+                      //  )
+                  //  },
                     onValueChange = { entry ->
                         password_txt = entry
                     }
                 )
 
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 0.dp, vertical = 10.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally, //centrar elementos de forma horizontal
+
+
+                ) {
+                    Text(
+                        text = "¿Olvidaste tu contraseña?",
+                        modifier = modifier,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+
+                    ClickableText(
+                        text = buildAnnotatedString {
+                            withStyle(
+                                style = SpanStyle(MaterialTheme.colorScheme.primary)
+                            ) {
+                                append("Haz click aqui")
+                            }
+                        },
+                        modifier = modifier,
+                        onClick = {
+                            // INICIA UN ACTIVITY NUEVO DE LA CLASE REGISTROACTIVITY Y NAVEGA A SU INTERFAZ
+                            //context.startActivity(Intent(context, RegistroActivity::class.java))
+                        }
+                    )
+
+                }
+
                 Button(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 32.dp, vertical = 16.dp),
+                        .padding(horizontal = 32.dp, vertical = 0.dp),
                     onClick = {  }
                 ) {
                     Text("Acceder")
@@ -166,7 +198,7 @@ fun InitializeUI(name: String, darktheme: Boolean,modifier: Modifier = Modifier)
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 0.dp, vertical = 32.dp),
+                        .padding(horizontal = 0.dp, vertical = 10.dp),
                     horizontalAlignment = Alignment.CenterHorizontally, //centrar elementos de forma horizontal
 
 
