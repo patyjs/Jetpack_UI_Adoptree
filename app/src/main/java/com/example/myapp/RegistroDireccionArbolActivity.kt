@@ -110,12 +110,12 @@ fun Greeting(modifier: Modifier = Modifier) {
                     .fillMaxWidth(),
                 value = calle_txt,
                 label = { Text("Calle") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.house_24),
-                        contentDescription = null
-                    )
-                },
+              //  leadingIcon = {
+                //    Icon(
+                  //      painterResource(id = R.drawable.house_24),
+                    //    contentDescription = null
+                    //)
+                // },
                 onValueChange = { entry ->
                     calle_txt = entry
                 })
@@ -126,12 +126,12 @@ fun Greeting(modifier: Modifier = Modifier) {
                         .fillMaxWidth(0.5f),
                     value = numExt_txt,
                     label = { Text("Núm. Ext.") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.gato_24),
-                            contentDescription = null
-                        )
-                    },
+                   // leadingIcon = {
+                     //   Icon(
+                       //     painterResource(id = R.drawable.gato_24),
+                         //   contentDescription = null
+                        //)
+                    // },
                     onValueChange = { entry ->
                         numExt_txt = entry
                     })
@@ -143,12 +143,12 @@ fun Greeting(modifier: Modifier = Modifier) {
                         .fillMaxWidth(),
                     value = numInt_txt,
                     label = { Text("Núm. Int.") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.gato_24),
-                            contentDescription = null
-                        )
-                    },
+                   // leadingIcon = {
+                     //   Icon(
+                       //     painterResource(id = R.drawable.gato_24),
+                         //   contentDescription = null
+                        // )
+                    // },
                     onValueChange = { entry ->
                         numInt_txt = entry
                     })
@@ -157,14 +157,29 @@ fun Greeting(modifier: Modifier = Modifier) {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
+                value = cp_txt,
+                label = { Text("Código postal") },
+               // leadingIcon = {
+                 //   Icon(
+                   //     painterResource(id = R.drawable.gato_24),
+                     //   contentDescription = null
+                    // )
+                // },
+                onValueChange = { entry ->
+                    cp_txt = entry
+                })
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
                 value = colonia_txt,
                 label = { Text("Colonia") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.colonia_24),
-                        contentDescription = null
-                    )
-                },
+               // leadingIcon = {
+                 //   Icon(
+                   //     painterResource(id = R.drawable.colonia_24),
+                     //   contentDescription = null
+                    // )
+                // },
                 onValueChange = { entry ->
                     colonia_txt = entry
                 })
@@ -173,12 +188,12 @@ fun Greeting(modifier: Modifier = Modifier) {
                     .fillMaxWidth(),
                 value = ciudad_txt,
                 label = { Text("Ciudad") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.colonia_24),
-                        contentDescription = null
-                    )
-                },
+                // leadingIcon = {
+                   // Icon(
+                     //   painterResource(id = R.drawable.colonia_24),
+                       // contentDescription = null
+                    //)
+                // },
                 onValueChange = { entry ->
                     ciudad_txt = entry
                 })
@@ -188,29 +203,15 @@ fun Greeting(modifier: Modifier = Modifier) {
                         .fillMaxWidth(),
             value = estado_txt,
             label = { Text("Estado") },
-            leadingIcon = {
-                Icon(
-                    painterResource(id = R.drawable.colonia_24),
-                    contentDescription = null
-                )
-            },
+          //  leadingIcon = {
+             //   Icon(
+               //     painterResource(id = R.drawable.colonia_24),
+                 //   contentDescription = null
+              //  )
+           // },
             onValueChange = { entry ->
                 estado_txt = entry
             })
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                value = cp_txt,
-                label = { Text("Código postal") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.gato_24),
-                        contentDescription = null
-                    )
-                },
-                onValueChange = { entry ->
-                    cp_txt = entry
-                })
 
             Button(
                 modifier = Modifier
