@@ -50,7 +50,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.AdoptTheme
-//import com.example.myapp.ui.theme.MyappTheme
+
 
 class RegistroActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +81,7 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
     var password_txt by remember { mutableStateOf("") }
     var password2_txt by remember { mutableStateOf("") }
     var cel_txt by remember { mutableStateOf("") }
-    var curp_txt by remember { mutableStateOf("") }
+    //var curp_txt by remember { mutableStateOf("") }
     var selectedDateText by remember { mutableStateOf("") }
 
 // SE INICIALIZA UNA VARIABLE CON UN OBJETO DEL TIPO DATEPICKERDIALOG, CON UNA FECHA PREDETERMINADA DE 01/06/2022
@@ -152,11 +152,11 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
                         .fillMaxWidth(),
                     value = name_txt,
                     label = { Text( "Nombre(s)") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.persona_24),
-                            contentDescription = null)
-                    },
+                    //leadingIcon = {
+                        //Icon(
+                          //  painterResource(id = R.drawable.persona_24),
+                          //contentDescription = null)
+                   // },
                     onValueChange = { entry ->
                         name_txt = entry
                     })
@@ -165,11 +165,11 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
                         .fillMaxWidth(),
                     value = pat_txt,
                     label = { Text( "Apellido paterno") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.persona_24),
-                            contentDescription = null)
-                    },
+                    // leadingIcon = {
+                        // Icon(
+                           // painterResource(id = R.drawable.persona_24),
+                           // contentDescription = null)
+                   // },
                     onValueChange = { entry ->
                         pat_txt = entry
                     })
@@ -178,11 +178,11 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
                         .fillMaxWidth(),
                     value = mat_txt,
                     label = { Text( "Apellido materno") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.persona_24),
-                            contentDescription = null)
-                    },
+                   // leadingIcon = {
+                      //  Icon(
+                        //    painterResource(id = R.drawable.persona_24),
+                        //    contentDescription = null)
+                    // },
                     onValueChange = { entry ->
                         mat_txt = entry
                     })
@@ -191,11 +191,11 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
                         .fillMaxWidth(),
                     value = email_txt,
                     label = { Text( "Correo") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.arroba_email_24),
-                            contentDescription = null)
-                    },
+                   // leadingIcon = {
+                     //   Icon(
+                       //     painterResource(id = R.drawable.arroba_email_24),
+                         //   contentDescription = null)
+                   // },
                     onValueChange = { entry ->
                         email_txt = entry
                     })
@@ -206,11 +206,11 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
                     value = password_txt,
                     label = { Text( "Crear contraseña") },
                     visualTransformation = PasswordVisualTransformation(),
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.password_24),
-                            contentDescription = null)
-                    },
+                  //  leadingIcon = {
+                    //    Icon(
+                      //      painterResource(id = R.drawable.password_24),
+                       //     contentDescription = null)
+                   // },
                     onValueChange = { entry ->
                         password_txt = entry
                     })
@@ -221,11 +221,11 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
                     value = password2_txt,
                     label = { Text( "Repetir contraseña") },
                     visualTransformation = PasswordVisualTransformation(),
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.password_24),
-                            contentDescription = null)
-                    },
+                   // leadingIcon = {
+                     //   Icon(
+                        //    painterResource(id = R.drawable.password_24),
+                          //  contentDescription = null)
+                   // },
                     onValueChange = { entry ->
                         password2_txt = entry
                     })
@@ -240,11 +240,11 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
 
                         value = selectedDateText,
                         label = { Text( "Fecha de nacimiento" ) },
-                        leadingIcon = {
-                            Icon(
-                                painterResource(id = R.drawable.calendar_month_24),
-                                contentDescription = null)
-                        },
+                       // leadingIcon = {
+                         //   Icon(
+                           //     painterResource(id = R.drawable.calendar_month_24),
+                         //       contentDescription = null)
+                       // },
                         onValueChange = { entry ->
                             password_txt = entry
                         })
@@ -273,28 +273,28 @@ fun InitializeRegistroUI(name: String,darktheme: Boolean, modifier: Modifier = M
                         .fillMaxWidth(),
                     value = cel_txt,
                     label = { Text( "Número celular") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.phone_24),
-                            contentDescription = null)
-                    },
+                   // leadingIcon = {
+                   //     Icon(
+                      //      painterResource(id = R.drawable.phone_24),
+                      //      contentDescription = null)
+                  //  },
                     onValueChange = { entry ->
                         cel_txt = entry
                     })
 
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = curp_txt,
-                    label = { Text( "Curp") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.curp_24),
-                            contentDescription = null)
-                    },
-                    onValueChange = { entry ->
-                        curp_txt = entry
-                    })
+                // OutlinedTextField(
+                   // modifier = Modifier
+                      // .fillMaxWidth(),
+                  //  value = curp_txt,
+                 //   label = { Text( "Curp") },
+                  //  leadingIcon = {
+                    //    Icon(
+                     //       painterResource(id = R.drawable.curp_24),
+                  //          contentDescription = null)
+                  //  },
+                   // onValueChange = { entry ->
+                    //    curp_txt = entry
+                   // })
 
                 Button(
                     modifier = Modifier
