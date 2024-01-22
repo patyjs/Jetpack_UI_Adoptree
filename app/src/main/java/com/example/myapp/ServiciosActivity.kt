@@ -154,7 +154,9 @@ fun Greeting5(modifier: Modifier = Modifier) {
     val misArboles: List<TipoServiciosModel> = listOf(
         TipoServiciosModel("Podar", R.drawable.pod),
         TipoServiciosModel("Regar", R.drawable.ri),
-        TipoServiciosModel("Fertilizar", R.drawable.fertilizante)
+        TipoServiciosModel("Fertilizar", R.drawable.fertilizante),
+        TipoServiciosModel("Crecimiento", R.drawable.crecimiento)
+
     )
 
     var showDialog by remember { mutableStateOf(false) }
