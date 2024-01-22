@@ -69,13 +69,17 @@ class RegistroInfoArbolActivity : ComponentActivity() {
 fun Greeting2(modifier: Modifier = Modifier) {
     val options = listOf("", "Responsabilidad", "Respeto", "Tolerencia", "Compromiso","Equidad")
     val options2 = listOf("", "Palo de rosa", "Mezquite", "Huizache", "Acacia", "Mimbre")
+    val options3 = listOf("", "Siembra", "Adopción")
     var expanded by remember { mutableStateOf(false) }
     var expanded2 by remember { mutableStateOf(false) }
+    var expanded3 by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf(options[0]) }
     var selectedOptionText2 by remember { mutableStateOf(options[0]) }
+    var selectedOptionText3 by remember { mutableStateOf(options[0]) }
 
     var tamaño_txt by remember { mutableStateOf("") }
     var perimetro_txt by remember { mutableStateOf("") }
+    var tipo_txt by remember { mutableStateOf("") }
 
     Column( // PARA COLOCAR ELEMENTOS DE FORMA VERTICAL (UNO ENCIMA DE OTRO)
         modifier = Modifier
@@ -121,12 +125,12 @@ fun Greeting2(modifier: Modifier = Modifier) {
                     value = selectedOptionText,
                     readOnly = true,
                     label = { Text("Valor") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.estrellas_24),
-                            contentDescription = null
-                        )
-                    },
+                   // leadingIcon = {
+                     //   Icon(
+                       //     painterResource(id = R.drawable.estrellas_24),
+                       //     contentDescription = null
+                     //   )
+                 //   },
                     onValueChange = { })
 
                 Spacer(modifier = Modifier.width(8.dp))
@@ -171,12 +175,12 @@ fun Greeting2(modifier: Modifier = Modifier) {
                     value = selectedOptionText2,
                     readOnly = true,
                     label = { Text("Nombre generico") },
-                    leadingIcon = {
-                        Icon(
-                            painterResource(id = R.drawable.texto_generico_24),
-                            contentDescription = null
-                        )
-                    },
+                  //  leadingIcon = {
+                      //  Icon(
+                          //  painterResource(id = R.drawable.texto_generico_24),
+                          //  contentDescription = null
+                      //  )
+                  //  },
                     onValueChange = { })
 
                 Spacer(modifier = Modifier.width(8.dp))
@@ -213,17 +217,62 @@ fun Greeting2(modifier: Modifier = Modifier) {
             }
 
 
+            Row(modifier = Modifier
+                .fillMaxWidth()) {
+
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f),
+                    value = selectedOptionText3,
+                    readOnly = true,
+                    label = { Text("Tipo de adopción") },
+                    onValueChange = { })
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                ) {
+                    IconButton(
+                        modifier = Modifier,
+                        onClick = {
+                            expanded3 = !expanded3
+                        })
+                    {
+                        Icon(
+                            painterResource(id = R.drawable.search_24),
+                            contentDescription = null)
+                    }
+
+                    DropdownMenu(
+                        expanded = expanded3,
+                        onDismissRequest = { expanded3 = false }
+                    ) {
+                        options3.forEach{
+                                item -> DropdownMenuItem(
+                            text = { Text(text = item) },
+                            onClick = {
+                                selectedOptionText3 = item
+                                expanded3 = false
+                            })
+                        }
+                    }
+                }
+            }
+
+
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
                 value = tamaño_txt,
                 label = { Text("Tamaño") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.circle_24),
-                        contentDescription = null
-                    )
-                },
+              //  leadingIcon = {
+                 //   Icon(
+                     //   painterResource(id = R.drawable.circle_24),
+                     //   contentDescription = null
+                 //   )
+               // },
                 onValueChange = { entry ->
                     tamaño_txt = entry
                 })
@@ -233,12 +282,12 @@ fun Greeting2(modifier: Modifier = Modifier) {
                     .fillMaxWidth(),
                 value = perimetro_txt,
                 label = { Text("Perímetro") },
-                leadingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.circle_24),
-                        contentDescription = null
-                    )
-                },
+               // leadingIcon = {
+                //    Icon(
+                  //      painterResource(id = R.drawable.circle_24),
+                  //      contentDescription = null
+                  //  )
+              //  },
                 onValueChange = { entry ->
                     perimetro_txt = entry
                 })
@@ -282,7 +331,7 @@ fun GreetingDarkPreview4() {
             color = MaterialTheme.colorScheme.background
         )
         {
-            Greeting()
+            Greeting2()
         }
     }
 }
