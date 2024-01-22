@@ -87,7 +87,7 @@ fun InitializeUI(name: String, darktheme: Boolean,modifier: Modifier = Modifier)
             )
         } else {
             Image(
-                painterResource(id = R.drawable.version4),
+                painterResource(id = R.drawable.bannernight),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

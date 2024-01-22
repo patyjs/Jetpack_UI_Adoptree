@@ -77,6 +77,8 @@ fun Greeting(modifier: Modifier = Modifier) {
             .padding(0.dp)
             .verticalScroll(rememberScrollState()))
     {
+
+
         Image(
             painter = painterResource(id = R.drawable.splash_image),
             contentDescription = null,
