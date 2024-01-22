@@ -128,13 +128,13 @@ fun DrawCard(arbolData :MisArbolesModel, modifier: Modifier = Modifier) {
                 Row {
                     Button(modifier = Modifier,
                         onClick = {  }) {
-                        Text("Registrar", fontSize = 12.sp)
+                        Text("Servicio", fontSize = 12.sp)
 
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Button(modifier = Modifier,
                         onClick = {  }) {
-                        Text("Comentar", fontSize = 12.sp)
+                        Text("Historial", fontSize = 12.sp)
 
                     }
                 }
