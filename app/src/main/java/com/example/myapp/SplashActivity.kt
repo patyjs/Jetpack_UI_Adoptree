@@ -31,7 +31,7 @@ import com.example.compose.md_theme_dark_onPrimary
 import com.example.compose.md_theme_light_logo
 import com.example.compose.md_theme_light_onPrimaryContainer
 import com.example.compose.md_theme_light_primaryContainer
-import com.example.myapp.ui.theme.lobster
+import com.example.myapp.ui.theme.dodge
 
 //import com.example.myapp.ui.theme.MyappTheme
 
@@ -83,9 +83,9 @@ fun Greeting6(modifier: Modifier = Modifier) {
             Text(
                 text = "Siembra Valores",
                 modifier = modifier,
-                fontSize = 28.sp,
+                fontSize = 42.sp,
                 color = md_theme_light_logo,
-                fontFamily = lobster
+                fontFamily = dodge
             )
 
 }}}

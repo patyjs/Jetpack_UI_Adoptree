@@ -9,8 +9,8 @@ import androidx.compose.ui.unit.sp
 import com.example.myapp.R
 
 
-val lobster = FontFamily(
-    Font(R.font.lobsterbold)
+val dodge = FontFamily(
+    Font(R.font.dodge)
 )
 
 
